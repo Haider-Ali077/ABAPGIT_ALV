@@ -16,94 +16,76 @@
      <LENGTH>18</LENGTH>
     </item>
     <item>
-     <ID>I</ID>
-     <KEY>001</KEY>
-     <ENTRY>Purchasing Data</ENTRY>
-     <LENGTH>30</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>002</KEY>
-     <ENTRY>Cost Basis</ENTRY>
-     <LENGTH>20</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>003</KEY>
-     <ENTRY>Delivery Cost Condition Types</ENTRY>
-     <LENGTH>40</LENGTH>
-    </item>
-    <item>
      <ID>S</ID>
      <KEY>P_GR</KEY>
-     <ENTRY>        Goods receipt (accrued)</ENTRY>
-     <LENGTH>31</LENGTH>
+     <ENTRY>        Goods Receipt (Accrued Cost)</ENTRY>
+     <LENGTH>36</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>P_IR</KEY>
-     <ENTRY>        Invoice receipt (actual)</ENTRY>
-     <LENGTH>32</LENGTH>
+     <ENTRY>        Invoice Receipt (Actual Cost)</ENTRY>
+     <LENGTH>37</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>P_OPEN</KEY>
-     <ENTRY>        Include items w/o history</ENTRY>
-     <LENGTH>33</LENGTH>
+     <ENTRY>        Include Items without GR / IR</ENTRY>
+     <LENGTH>37</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_BEDAT</KEY>
-     <ENTRY>D       .</ENTRY>
-     <LENGTH>9</LENGTH>
+     <ENTRY>        PO Document Date</ENTRY>
+     <LENGTH>24</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_BUKRS</KEY>
-     <ENTRY>D       .</ENTRY>
-     <LENGTH>9</LENGTH>
+     <ENTRY>        Company Code</ENTRY>
+     <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_EBELN</KEY>
-     <ENTRY>D       .</ENTRY>
-     <LENGTH>9</LENGTH>
+     <ENTRY>        Purchase Order</ENTRY>
+     <LENGTH>22</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_KCUS</KEY>
-     <ENTRY>        Customs / Duty cond. types</ENTRY>
-     <LENGTH>34</LENGTH>
+     <ENTRY>        Customs / Duty Condition Types</ENTRY>
+     <LENGTH>38</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_KFRT</KEY>
-     <ENTRY>        Freight condition types</ENTRY>
+     <ENTRY>        Freight Condition Types</ENTRY>
      <LENGTH>31</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_KINS</KEY>
-     <ENTRY>        Insurance condition types</ENTRY>
+     <ENTRY>        Insurance Condition Types</ENTRY>
      <LENGTH>33</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_LIFNR</KEY>
-     <ENTRY>D       .</ENTRY>
-     <LENGTH>9</LENGTH>
+     <ENTRY>        Vendor</ENTRY>
+     <LENGTH>14</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_MATNR</KEY>
-     <ENTRY>D       .</ENTRY>
-     <LENGTH>9</LENGTH>
+     <ENTRY>        Material</ENTRY>
+     <LENGTH>16</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>S_WERKS</KEY>
-     <ENTRY>D       .</ENTRY>
-     <LENGTH>9</LENGTH>
+     <ENTRY>        Plant</ENTRY>
+     <LENGTH>13</LENGTH>
     </item>
    </TPOOL>
   </asx:values>

@@ -20,6 +20,8 @@ Amounts are in company code currency.
 
 **Selection screen**
 
+Every field label and block title is set in the program code, so the screen shows readable names even when text elements are missing (for example, if the source was pasted into SE38).
+
 - *Purchasing Data*: company code (required), plant, PO, vendor, material, document date.
 - *Cost Basis*:
   - **Goods receipt (accrued)** uses GR history (`VGABE = 1`).

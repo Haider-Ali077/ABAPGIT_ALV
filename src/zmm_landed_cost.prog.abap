@@ -97,31 +97,83 @@ DATA: gt_out TYPE STANDARD TABLE OF ty_out,
 *---------------------------------------------------------------------*
 * SELECTION SCREEN
 *---------------------------------------------------------------------*
-SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE TEXT-001.
-SELECT-OPTIONS: s_bukrs FOR ekko-bukrs OBLIGATORY,  " Company Code
-                s_werks FOR ekpo-werks,             " Plant
-                s_ebeln FOR ekko-ebeln,             " Purchasing Document
-                s_lifnr FOR ekko-lifnr,             " Vendor
-                s_matnr FOR ekpo-matnr,             " Material
-                s_bedat FOR ekko-bedat.             " Document Date
+* Every field has its own label (COMMENT ... FOR FIELD) and every block
+* its own title. Labels and titles are filled in INITIALIZATION, so the
+* screen shows proper names even without maintained text elements.
+SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE t_b1.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_bukrs FOR FIELD s_bukrs.
+SELECT-OPTIONS s_bukrs FOR ekko-bukrs OBLIGATORY.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_werks FOR FIELD s_werks.
+SELECT-OPTIONS s_werks FOR ekpo-werks.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_ebeln FOR FIELD s_ebeln.
+SELECT-OPTIONS s_ebeln FOR ekko-ebeln.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_lifnr FOR FIELD s_lifnr.
+SELECT-OPTIONS s_lifnr FOR ekko-lifnr.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_matnr FOR FIELD s_matnr.
+SELECT-OPTIONS s_matnr FOR ekpo-matnr.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_bedat FOR FIELD s_bedat.
+SELECT-OPTIONS s_bedat FOR ekko-bedat.
+SELECTION-SCREEN END OF LINE.
+
 SELECTION-SCREEN END OF BLOCK b1.
 
-SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE TEXT-002.
-PARAMETERS: p_gr   RADIOBUTTON GROUP bas DEFAULT 'X', " GR (accrued)
-            p_ir   RADIOBUTTON GROUP bas,             " IR (actual)
-            p_open AS CHECKBOX.                       " Items w/o history
+SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE t_b2.
+
+SELECTION-SCREEN BEGIN OF LINE.
+PARAMETERS p_gr RADIOBUTTON GROUP bas DEFAULT 'X'.
+SELECTION-SCREEN COMMENT 3(40) c_gr FOR FIELD p_gr.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+PARAMETERS p_ir RADIOBUTTON GROUP bas.
+SELECTION-SCREEN COMMENT 3(40) c_ir FOR FIELD p_ir.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN SKIP 1.
+
+SELECTION-SCREEN BEGIN OF LINE.
+PARAMETERS p_open AS CHECKBOX.
+SELECTION-SCREEN COMMENT 3(40) c_open FOR FIELD p_open.
+SELECTION-SCREEN END OF LINE.
+
 SELECTION-SCREEN END OF BLOCK b2.
 
-SELECTION-SCREEN BEGIN OF BLOCK b3 WITH FRAME TITLE TEXT-003.
-SELECT-OPTIONS: s_kfrt FOR ekbz-kschl NO INTERVALS,  " Freight
-                s_kcus FOR ekbz-kschl NO INTERVALS,  " Customs / Duty
-                s_kins FOR ekbz-kschl NO INTERVALS.  " Insurance
+SELECTION-SCREEN BEGIN OF BLOCK b3 WITH FRAME TITLE t_b3.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_kfrt FOR FIELD s_kfrt.
+SELECT-OPTIONS s_kfrt FOR ekbz-kschl NO INTERVALS.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_kcus FOR FIELD s_kcus.
+SELECT-OPTIONS s_kcus FOR ekbz-kschl NO INTERVALS.
+SELECTION-SCREEN END OF LINE.
+
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT 1(31) c_kins FOR FIELD s_kins.
+SELECT-OPTIONS s_kins FOR ekbz-kschl NO INTERVALS.
+SELECTION-SCREEN END OF LINE.
+
 SELECTION-SCREEN END OF BLOCK b3.
 
-* Text symbols (maintain in Text Elements):
-*   TEXT-001 = 'Purchasing Data'
-*   TEXT-002 = 'Cost Basis'
-*   TEXT-003 = 'Delivery Cost Condition Types'
 * Delivery costs whose condition type is in none of the three lists
 * are reported as "Other Delivery Costs".
 
@@ -156,6 +208,25 @@ ENDCLASS.
 * INITIALIZATION
 *---------------------------------------------------------------------*
 INITIALIZATION.
+
+* Block titles
+  t_b1 = 'Purchasing Data'.
+  t_b2 = 'Cost Basis'.
+  t_b3 = 'Delivery Cost Condition Types'.
+
+* Field labels
+  c_bukrs = 'Company Code'.
+  c_werks = 'Plant'.
+  c_ebeln = 'Purchase Order'.
+  c_lifnr = 'Vendor'.
+  c_matnr = 'Material'.
+  c_bedat = 'PO Document Date'.
+  c_gr    = 'Goods Receipt (Accrued Cost)'.
+  c_ir    = 'Invoice Receipt (Actual Cost)'.
+  c_open  = 'Include Items without GR / IR'.
+  c_kfrt  = 'Freight Condition Types'.
+  c_kcus  = 'Customs / Duty Condition Types'.
+  c_kins  = 'Insurance Condition Types'.
 
 * Default delivery cost condition types of the standard MM pricing
 * procedure - adjust to the customer pricing procedure if needed
