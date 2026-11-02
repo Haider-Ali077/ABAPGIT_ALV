@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "supernova",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "D:/Projects/ABAPGIT_ALV/SuperNova", "run", "dev"],
+      "port": 3000
+    }
+  ]
+}
