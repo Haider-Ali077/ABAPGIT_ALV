@@ -1,0 +1,12 @@
+{
+  "functionalConsultant": "",
+  "technicalConsultant": "",
+  "signOff": [
+    { "role": "Functional Consultant", "name": "" },
+    { "role": "Technical Consultant", "name": "" },
+    { "role": "Functional Manager", "name": "" },
+    { "role": "Technical Manager", "name": "" },
+    { "role": "Project Manager (Client Side)", "name": "" },
+    { "role": "BPO", "name": "" }
+  ]
+}

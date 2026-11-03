@@ -1,0 +1,205 @@
+{
+  "_note": "Hand-curated subset of SAP standard DDIC for the POC. Not exported from a live system: verify against SE11 / DD03L before relying on it. T001 is included in addition to the requested tables because company-code currency (T001-WAERS) is needed for EKBE/EKBZ-DMBTR.",
+  "tables": {
+    "EKKO": {
+      "description": "Purchasing Document Header",
+      "fields": {
+        "MANDT": { "type": "CLNT(3)", "text": "Client", "key": true },
+        "EBELN": { "type": "CHAR(10)", "text": "Purchasing Document Number", "key": true },
+        "BUKRS": { "type": "CHAR(4)", "text": "Company Code" },
+        "BSTYP": { "type": "CHAR(1)", "text": "Purchasing Document Category", "values": { "F": "Purchase order", "L": "Scheduling agreement", "K": "Contract", "A": "RFQ" } },
+        "BSART": { "type": "CHAR(4)", "text": "Purchasing Document Type" },
+        "LOEKZ": { "type": "CHAR(1)", "text": "Deletion Indicator in Purchasing Document" },
+        "STATU": { "type": "CHAR(1)", "text": "Status of Purchasing Document" },
+        "AEDAT": { "type": "DATS", "text": "Created On" },
+        "ERNAM": { "type": "CHAR(12)", "text": "Created By" },
+        "LIFNR": { "type": "CHAR(10)", "text": "Vendor Account Number" },
+        "ZTERM": { "type": "CHAR(4)", "text": "Terms of Payment Key" },
+        "EKORG": { "type": "CHAR(4)", "text": "Purchasing Organization" },
+        "EKGRP": { "type": "CHAR(3)", "text": "Purchasing Group" },
+        "WAERS": { "type": "CUKY(5)", "text": "Document Currency" },
+        "WKURS": { "type": "DEC", "text": "Exchange Rate" },
+        "BEDAT": { "type": "DATS", "text": "Purchasing Document Date" },
+        "KDATB": { "type": "DATS", "text": "Start of Validity Period" },
+        "KDATE": { "type": "DATS", "text": "End of Validity Period" },
+        "INCO1": { "type": "CHAR(3)", "text": "Incoterms (Part 1)" },
+        "INCO2": { "type": "CHAR(28)", "text": "Incoterms (Part 2)" },
+        "KNUMV": { "type": "CHAR(10)", "text": "Number of the Document Condition" },
+        "KALSM": { "type": "CHAR(6)", "text": "Pricing Procedure" },
+        "RESWK": { "type": "CHAR(4)", "text": "Supplying (Issuing) Plant in Stock Transport Order" },
+        "FRGKE": { "type": "CHAR(1)", "text": "Release Indicator" }
+      }
+    },
+    "EKPO": {
+      "description": "Purchasing Document Item",
+      "fields": {
+        "MANDT": { "type": "CLNT(3)", "text": "Client", "key": true },
+        "EBELN": { "type": "CHAR(10)", "text": "Purchasing Document Number", "key": true },
+        "EBELP": { "type": "NUMC(5)", "text": "Item Number of Purchasing Document", "key": true },
+        "LOEKZ": { "type": "CHAR(1)", "text": "Deletion Indicator", "values": { " ": "Active", "L": "Deleted", "S": "Blocked" } },
+        "STATU": { "type": "CHAR(1)", "text": "RFQ Status" },
+        "AEDAT": { "type": "DATS", "text": "Item Change Date" },
+        "TXZ01": { "type": "CHAR(40)", "text": "Short Text" },
+        "MATNR": { "type": "CHAR(40)", "text": "Material Number" },
+        "EMATN": { "type": "CHAR(40)", "text": "Material Number (MPN)" },
+        "BUKRS": { "type": "CHAR(4)", "text": "Company Code" },
+        "WERKS": { "type": "CHAR(4)", "text": "Plant" },
+        "LGORT": { "type": "CHAR(4)", "text": "Storage Location" },
+        "MATKL": { "type": "CHAR(9)", "text": "Material Group" },
+        "INFNR": { "type": "CHAR(10)", "text": "Number of Purchasing Info Record" },
+        "KONNR": { "type": "CHAR(10)", "text": "Number of Principal Purchase Agreement" },
+        "KTPNR": { "type": "NUMC(5)", "text": "Item Number of Principal Purchase Agreement" },
+        "MENGE": { "type": "QUAN(13,3)", "text": "Purchase Order Quantity", "ref": "EKPO-MEINS" },
+        "MEINS": { "type": "UNIT(3)", "text": "Purchase Order Unit of Measure" },
+        "BPRME": { "type": "UNIT(3)", "text": "Order Price Unit (Purchasing)" },
+        "NETPR": { "type": "CURR(11,2)", "text": "Net Price in Purchasing Document (in Document Currency)", "ref": "EKKO-WAERS" },
+        "PEINH": { "type": "DEC(5)", "text": "Price Unit" },
+        "NETWR": { "type": "CURR(13,2)", "text": "Net Order Value in PO Currency", "ref": "EKKO-WAERS" },
+        "BRTWR": { "type": "CURR(13,2)", "text": "Gross Order Value in PO Currency", "ref": "EKKO-WAERS" },
+        "WEBRE": { "type": "CHAR(1)", "text": "Indicator: GR-Based Invoice Verification" },
+        "KNTTP": { "type": "CHAR(1)", "text": "Account Assignment Category" },
+        "PSTYP": { "type": "CHAR(1)", "text": "Item Category in Purchasing Document" },
+        "ELIKZ": { "type": "CHAR(1)", "text": "Delivery Completed Indicator" },
+        "EREKZ": { "type": "CHAR(1)", "text": "Final Invoice Indicator" },
+        "WEPOS": { "type": "CHAR(1)", "text": "Goods Receipt Indicator" },
+        "REPOS": { "type": "CHAR(1)", "text": "Invoice Receipt Indicator" },
+        "MWSKZ": { "type": "CHAR(2)", "text": "Tax on Sales/Purchases Code" }
+      }
+    },
+    "EKBE": {
+      "description": "History per Purchasing Document (goods receipts, invoice receipts)",
+      "fields": {
+        "MANDT": { "type": "CLNT(3)", "text": "Client", "key": true },
+        "EBELN": { "type": "CHAR(10)", "text": "Purchasing Document Number", "key": true },
+        "EBELP": { "type": "NUMC(5)", "text": "Item Number of Purchasing Document", "key": true },
+        "ZEKKN": { "type": "NUMC(2)", "text": "Sequential Number of Account Assignment", "key": true },
+        "VGABE": { "type": "CHAR(1)", "text": "Transaction/Event Type, Purchase Order History", "key": true, "values": { "1": "Goods receipt", "2": "Invoice receipt", "3": "Subsequent debit/credit" } },
+        "GJAHR": { "type": "NUMC(4)", "text": "Material Document Year", "key": true },
+        "BELNR": { "type": "CHAR(10)", "text": "Number of Material Document / Invoice Document", "key": true },
+        "BUZEI": { "type": "NUMC(4)", "text": "Item in Material Document / Invoice Document", "key": true },
+        "BEWTP": { "type": "CHAR(1)", "text": "Purchase Order History Category" },
+        "BWART": { "type": "CHAR(3)", "text": "Movement Type (Inventory Management)" },
+        "BUDAT": { "type": "DATS", "text": "Posting Date in the Document" },
+        "MENGE": { "type": "QUAN(13,3)", "text": "Quantity (in order unit)" },
+        "BPMNG": { "type": "QUAN(13,3)", "text": "Quantity in Purchase Order Price Unit" },
+        "DMBTR": { "type": "CURR(13,2)", "text": "Amount in Local (Company Code) Currency", "ref": "EKBE-HSWAE" },
+        "WRBTR": { "type": "CURR(13,2)", "text": "Amount in Document Currency", "ref": "EKBE-WAERS" },
+        "WAERS": { "type": "CUKY(5)", "text": "Currency Key" },
+        "HSWAE": { "type": "CUKY(5)", "text": "Local Currency Key" },
+        "AREWR": { "type": "CURR(13,2)", "text": "GR/IR Account Clearing Value in Local Currency" },
+        "SHKZG": { "type": "CHAR(1)", "text": "Debit/Credit Indicator", "values": { "S": "Debit", "H": "Credit (reversal / credit memo)" } },
+        "ELIKZ": { "type": "CHAR(1)", "text": "Delivery Completed Indicator" },
+        "XBLNR": { "type": "CHAR(16)", "text": "Reference Document Number" },
+        "LFGJA": { "type": "NUMC(4)", "text": "Fiscal Year of a Reference Document" },
+        "LFBNR": { "type": "CHAR(10)", "text": "Document No. of a Reference Document" },
+        "LFPOS": { "type": "NUMC(4)", "text": "Item of a Reference Document" },
+        "CPUDT": { "type": "DATS", "text": "Day On Which Accounting Document Was Entered" },
+        "MATNR": { "type": "CHAR(40)", "text": "Material Number" },
+        "WERKS": { "type": "CHAR(4)", "text": "Plant" }
+      }
+    },
+    "EKBZ": {
+      "description": "History per Purchasing Document: Delivery Costs (planned delivery costs per condition type)",
+      "fields": {
+        "MANDT": { "type": "CLNT(3)", "text": "Client", "key": true },
+        "EBELN": { "type": "CHAR(10)", "text": "Purchasing Document Number", "key": true },
+        "EBELP": { "type": "NUMC(5)", "text": "Item Number of Purchasing Document", "key": true },
+        "STUNR": { "type": "NUMC(3)", "text": "Step Number (pricing)", "key": true },
+        "ZAEHK": { "type": "NUMC", "text": "Condition Counter", "key": true },
+        "VGABE": { "type": "CHAR(1)", "text": "Transaction/Event Type, Purchase Order History", "key": true, "values": { "1": "Goods receipt", "2": "Invoice receipt", "3": "Subsequent debit/credit" } },
+        "GJAHR": { "type": "NUMC(4)", "text": "Material Document Year", "key": true },
+        "BELNR": { "type": "CHAR(10)", "text": "Number of Material Document / Invoice Document", "key": true },
+        "BUZEI": { "type": "NUMC(4)", "text": "Item in Material Document / Invoice Document", "key": true },
+        "BEWTP": { "type": "CHAR(1)", "text": "Purchase Order History Category" },
+        "BUDAT": { "type": "DATS", "text": "Posting Date in the Document" },
+        "MENGE": { "type": "QUAN(13,3)", "text": "Quantity" },
+        "DMBTR": { "type": "CURR(13,2)", "text": "Amount in Local (Company Code) Currency", "ref": "EKBZ-HSWAE" },
+        "WRBTR": { "type": "CURR(13,2)", "text": "Amount in Document Currency", "ref": "EKBZ-WAERS" },
+        "WAERS": { "type": "CUKY(5)", "text": "Currency Key" },
+        "HSWAE": { "type": "CUKY(5)", "text": "Local Currency Key" },
+        "AREWR": { "type": "CURR(13,2)", "text": "GR/IR Account Clearing Value in Local Currency" },
+        "SHKZG": { "type": "CHAR(1)", "text": "Debit/Credit Indicator", "values": { "S": "Debit", "H": "Credit (reversal / credit memo)" } },
+        "KSCHL": { "type": "CHAR(4)", "text": "Condition Type (delivery cost condition, e.g. FRA1/FRB1/FRC1 freight, ZOA1/ZOB1/ZOC1 customs duty in the standard MM pricing procedure)" },
+        "LIFNR": { "type": "CHAR(10)", "text": "Vendor of the Delivery Cost (e.g. freight vendor)" },
+        "XBLNR": { "type": "CHAR(16)", "text": "Reference Document Number" },
+        "CPUDT": { "type": "DATS", "text": "Day On Which Accounting Document Was Entered" }
+      }
+    },
+    "T001": {
+      "description": "Company Codes",
+      "fields": {
+        "MANDT": { "type": "CLNT(3)", "text": "Client", "key": true },
+        "BUKRS": { "type": "CHAR(4)", "text": "Company Code", "key": true },
+        "BUTXT": { "type": "CHAR(25)", "text": "Name of Company Code or Company" },
+        "ORT01": { "type": "CHAR(25)", "text": "City" },
+        "LAND1": { "type": "CHAR(3)", "text": "Country Key" },
+        "WAERS": { "type": "CUKY(5)", "text": "Company Code Currency (local currency)" },
+        "SPRAS": { "type": "LANG(1)", "text": "Language Key" },
+        "KTOPL": { "type": "CHAR(4)", "text": "Chart of Accounts" },
+        "PERIV": { "type": "CHAR(2)", "text": "Fiscal Year Variant" }
+      }
+    },
+    "T001W": {
+      "description": "Plants/Branches",
+      "fields": {
+        "MANDT": { "type": "CLNT(3)", "text": "Client", "key": true },
+        "WERKS": { "type": "CHAR(4)", "text": "Plant", "key": true },
+        "NAME1": { "type": "CHAR(30)", "text": "Name of Plant" },
+        "BWKEY": { "type": "CHAR(4)", "text": "Valuation Area" },
+        "KUNNR": { "type": "CHAR(10)", "text": "Customer Number of Plant" },
+        "LIFNR": { "type": "CHAR(10)", "text": "Vendor Number of Plant" },
+        "EKORG": { "type": "CHAR(4)", "text": "Purchasing Organization" },
+        "VKORG": { "type": "CHAR(4)", "text": "Sales Organization for Intercompany Billing" },
+        "LAND1": { "type": "CHAR(3)", "text": "Country Key" },
+        "REGIO": { "type": "CHAR(3)", "text": "Region" },
+        "ORT01": { "type": "CHAR(25)", "text": "City" },
+        "SPRAS": { "type": "LANG(1)", "text": "Language Key" }
+      }
+    },
+    "LFA1": {
+      "description": "Vendor Master (General Section)",
+      "fields": {
+        "MANDT": { "type": "CLNT(3)", "text": "Client", "key": true },
+        "LIFNR": { "type": "CHAR(10)", "text": "Account Number of Vendor", "key": true },
+        "LAND1": { "type": "CHAR(3)", "text": "Country Key" },
+        "NAME1": { "type": "CHAR(35)", "text": "Name 1" },
+        "NAME2": { "type": "CHAR(35)", "text": "Name 2" },
+        "ORT01": { "type": "CHAR(35)", "text": "City" },
+        "PSTLZ": { "type": "CHAR(10)", "text": "Postal Code" },
+        "REGIO": { "type": "CHAR(3)", "text": "Region" },
+        "STRAS": { "type": "CHAR(35)", "text": "Street and House Number" },
+        "KTOKK": { "type": "CHAR(4)", "text": "Vendor Account Group" },
+        "SPERR": { "type": "CHAR(1)", "text": "Central Posting Block" },
+        "LOEVM": { "type": "CHAR(1)", "text": "Central Deletion Flag" },
+        "SPRAS": { "type": "LANG(1)", "text": "Language Key" },
+        "STCD1": { "type": "CHAR(16)", "text": "Tax Number 1" },
+        "ADRNR": { "type": "CHAR(10)", "text": "Address Number" }
+      }
+    },
+    "MAKT": {
+      "description": "Material Descriptions",
+      "fields": {
+        "MANDT": { "type": "CLNT(3)", "text": "Client", "key": true },
+        "MATNR": { "type": "CHAR(40)", "text": "Material Number", "key": true },
+        "SPRAS": { "type": "LANG(1)", "text": "Language Key", "key": true },
+        "MAKTX": { "type": "CHAR(40)", "text": "Material Description" },
+        "MAKTG": { "type": "CHAR(40)", "text": "Material Description in Upper Case for Matchcodes" }
+      }
+    }
+  },
+  "authorization_objects": {
+    "M_BEST_WRK": { "text": "Plant in Purchase Order", "fields": ["ACTVT", "WERKS"] },
+    "M_BEST_EKO": { "text": "Purchasing Organization in Purchase Order", "fields": ["ACTVT", "EKORG"] },
+    "M_BEST_EKG": { "text": "Purchasing Group in Purchase Order", "fields": ["ACTVT", "EKGRP"] },
+    "M_BEST_BSA": { "text": "Document Type in Purchase Order", "fields": ["ACTVT", "BSART"] },
+    "M_RAHM_WRK": { "text": "Plant in Outline Agreement (scheduling agreement / contract)", "fields": ["ACTVT", "WERKS"] },
+    "M_RAHM_EKO": { "text": "Purchasing Organization in Outline Agreement", "fields": ["ACTVT", "EKORG"] },
+    "M_RAHM_EKG": { "text": "Purchasing Group in Outline Agreement", "fields": ["ACTVT", "EKGRP"] },
+    "M_RAHM_BSA": { "text": "Document Type in Outline Agreement", "fields": ["ACTVT", "BSART"] }
+  },
+  "drilldowns": {
+    "BES": { "transaction": "ME23N", "text": "Display Purchase Order (parameter ID BES = purchase order number)" },
+    "VRT": { "transaction": "ME33L", "text": "Display Scheduling Agreement (parameter ID VRT = outline agreement number)" },
+    "MAT": { "transaction": "MM03", "text": "Display Material (parameter ID MAT = material number)" }
+  }
+}
